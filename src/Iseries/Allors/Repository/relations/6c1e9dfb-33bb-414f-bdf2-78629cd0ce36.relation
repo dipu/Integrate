@@ -1,0 +1,11 @@
+<relation allors="1.0" id="6c1e9dfb-33bb-414f-bdf2-78629cd0ce36">
+  <association>
+    <type idref="6d0ecca5-f47c-4ba3-a515-e4533697ae68" />
+  </association>
+  <role>
+    <type idref="ad7f5ddc-bedb-4aaa-97ac-d6693a009ba9" />
+    <singularName>DbType</singularName>
+    <pluralName>DbTypes</pluralName>
+    <size>256</size>
+  </role>
+</relation>

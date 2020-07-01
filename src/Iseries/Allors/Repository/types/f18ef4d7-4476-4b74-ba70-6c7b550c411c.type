@@ -1,0 +1,5 @@
+<type allors="1.0" id="f18ef4d7-4476-4b74-ba70-6c7b550c411c">
+  <singularName>DecimalParameter</singularName>
+  <pluralName>DecimalParameters</pluralName>
+  <namespace idref="09d8acde-bc56-4fa3-bf36-2729688843bb" />
+</type>

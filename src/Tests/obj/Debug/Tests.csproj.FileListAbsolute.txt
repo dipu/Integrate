@@ -1,0 +1,16 @@
+C:\Repos\GitHub\Allors\Integrate\src\Tests\bin\Debug\Tests.dll.config
+C:\Repos\GitHub\Allors\Integrate\src\Tests\bin\Debug\Tests.dll
+C:\Repos\GitHub\Allors\Integrate\src\Tests\bin\Debug\Tests.pdb
+C:\Repos\GitHub\Allors\Integrate\src\Tests\bin\Debug\Allors.Adapters.Memory.dll
+C:\Repos\GitHub\Allors\Integrate\src\Tests\bin\Debug\Allors.Adapters.SqlClient.dll
+C:\Repos\GitHub\Allors\Integrate\src\Tests\bin\Debug\Allors.Framework.dll
+C:\Repos\GitHub\Allors\Integrate\src\Tests\bin\Debug\IBM.Data.DB2.iSeries.dll
+C:\Repos\GitHub\Allors\Integrate\src\Tests\bin\Debug\Iseries.dll
+C:\Repos\GitHub\Allors\Integrate\src\Tests\bin\Debug\nunit.framework.dll
+C:\Repos\GitHub\Allors\Integrate\src\Tests\bin\Debug\Iseries.pdb
+C:\Repos\GitHub\Allors\Integrate\src\Tests\bin\Debug\nunit.framework.xml
+C:\Repos\GitHub\Allors\Integrate\src\Tests\obj\Debug\Tests.csprojAssemblyReference.cache
+C:\Repos\GitHub\Allors\Integrate\src\Tests\obj\Debug\Tests.csproj.CoreCompileInputs.cache
+C:\Repos\GitHub\Allors\Integrate\src\Tests\obj\Debug\Tests.csproj.CopyComplete
+C:\Repos\GitHub\Allors\Integrate\src\Tests\obj\Debug\Tests.dll
+C:\Repos\GitHub\Allors\Integrate\src\Tests\obj\Debug\Tests.pdb

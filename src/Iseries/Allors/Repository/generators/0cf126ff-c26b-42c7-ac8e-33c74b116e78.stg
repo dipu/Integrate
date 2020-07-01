@@ -1,0 +1,312 @@
+group AllorsCSharpBase;
+
+TemplateId() ::= <<680A5CEE-D7A0-440a-B14C-879B74B0E769>>
+TemplateName() ::= <<Allors C# Base>>
+TemplateVersion() ::= <<1.0.16>>
+TemplateAllors() ::= <<1.0>>
+TemplateConfiguration(domain) ::= <<
+$! 
+Copyright 2002-2008 Allors bvba.
+
+Dual Licensed under
+  a) the Lesser General Public Licence v3 (LGPL)
+  b) the Allors License
+
+The LGPL License is included in the file lgpl.txt.
+The Allors License is an addendum to your contract.
+
+Allors Platform is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+For more information visit http://www.allors.com/legal
+!$
+<generations>
+$domain.compositeTypes:{type|<generation template="type" input="$type.Id $" output="$type.NameSpace$/$type.SingularName$.cs"/>}$
+$domain.multiples:{type|<generation template="multiple" input="$type.Id $" output="$type.NameSpace$/$type.SingularName$.cs"/>}$
+</generations>
+>>
+
+multiple(domain,type) ::= <<
+using AllorsDomains;
+using Allors;
+using Allors.Meta;
+
+namespace $type.Namespace.LongName$.AllorsGenerated
+{
+	public interface AllorsInterface$type.name$ : AllorsObject {}
+}>>
+
+type(domain,type) ::= <<
+using Allors;
+using Allors.Meta;
+
+namespace $type.Namespace.LongName$.AllorsGenerated
+{
+$if(type.IsInterface)$
+	
+$if(type.DocumentationLines)$ 
+	/// <summary> 
+	$type.DocumentationLines:documentationLine(it)$	/// </summary> 
+$endif$ 
+	public interface AllorsInterface$type.name$ : $type.DirectSuperInterfaces:{directSuperInterface|$directSuperInterface.FullNameForCTS$,}$ $type.multiples:{multiple|$multiple.FullNameForCTS$,}$ AllorsObject 
+	{
+$type.AssociationsWhereType:{association|$typeInterfaceRole(relation=association.RelationWhereAssociation,association=association,role=association.RelationWhereAssociation.Role)$}$
+$type.RolesWhereType:{role|$typeInterfaceAssociation(relation=role.RelationWhereRole,association=role.RelationWhereRole.Association,role=role)$}$
+	}
+	
+$else$
+public interface AllorsInterface$type.name$ : $type.directSuperInterfaces:{directSuperInterface|$directSuperInterface.FullNameForCTS$,}$ $type.multiples:{multiple|$multiple.FullNameForCTS$,}$ AllorsObject
+	{
+	}
+	
+$if(type.DocumentationLines)$ 
+	/// <summary> 
+	$type.DocumentationLines:documentationLine(it)$	/// </summary> 
+$endif$ 
+	public abstract class AllorsClass$type.name$ : $if(type.ExistDirectSuperClass)$ $type.DirectSuperClass.FullNameForCTS$, $endif$ AllorsObject
+	{
+$if(type.ExistDirectSuperClass)$
+		protected AllorsClass$type.name$(AllorsStrategy allors) : base(allors){}
+$else$
+		protected AllorsStrategy allors;
+
+		public virtual AllorsSession AllorsSession{get{return this.allors.Session;}}
+		public virtual AllorsObjectId AllorsId{get{return this.allors.Id;}}
+		public virtual MetaType AllorsMetaType{get{return this.allors.MetaType;}}
+		public virtual AllorsStrategy AllorsStrategy{get{return this.allors;}}
+		public virtual bool AllorsIsDisconnectedNew{get{return this.allors.IsDisconnectedNew;}}
+
+		public virtual void Delete(){this.allors.Delete();}
+		public virtual bool IsDeleted{get{return this.allors.IsDeleted;}}
+
+		public override System.Boolean Equals( System.Object obj ) {
+			AllorsObject typedObj = obj as AllorsObject;
+			return	typedObj != null && 
+					typedObj.AllorsId.Equals(this.AllorsId) && 
+					typedObj.AllorsSession.Population.Equals(AllorsSession.Population);
+		}
+
+		public override System.Int32 GetHashCode() {
+			return this.AllorsId.GetHashCode();
+		}
+
+		public override System.String ToString() {
+            return "Object[type=" + this.GetType().Name + ", id=" + AllorsId + "] " + AllorsSession.ToString();
+		}
+
+		protected AllorsClass$type.name$(AllorsStrategy allors){this.allors=allors;}
+$endif$
+$type.ExclusiveRoles:{role|$typeClassRole(relation=role.RelationWhereRole,association=role.RelationWhereRole.Association,role=role)$}$
+$type.ExclusiveAssociations:{association|$typeClassAssociation(relation=association.RelationWhereAssociation,association=association,role=association.RelationWhereAssociation.Role)$}$
+	}
+$endif$
+
+}
+>>
+
+typeInterfaceRole(relation,association,role) ::= <<
+$\n$
+$if(role.Type.IsUnit)$
+		$role.Type.FullNameForCTS$ $role.HierarchySingularName$ 
+		{
+			get;
+			set;
+		}
+		bool Exist$role.HierarchySingularName${get;}
+		void Remove$role.HierarchySingularName$();
+$else$
+$if(role.IsMany)$
+		AllorsExtent<$role.Type.FullNameForCTS$> $role.HierarchyPluralName$
+		{ 
+			get;
+			set;
+		}
+		void Add$role.HierarchySingularName$ ($role.Type.FullNameForCTS$ value);
+		void Remove$role.HierarchySingularName$ ($role.Type.FullNameForCTS$ value);
+		bool Exist$role.HierarchyPluralName$
+		{
+			get;
+		}
+		void Remove$role.HierarchyPluralName$();
+$else$
+		$role.Type.FullNameForCTS$ $role.HierarchySingularName$
+		{ 
+			get;
+			set;
+		}
+		bool Exist$role.HierarchySingularName$
+		{
+			get;
+		}
+		void Remove$role.HierarchySingularName$();
+$endif$
+$endif$
+>>
+
+typeInterfaceAssociation(relation,association,role) ::= <<
+$\n$
+$if(association.IsMany)$
+		AllorsExtent<$association.Type.FullNameForCTS$> $association.PluralName$Where$role.SingularName$
+		{ 
+			get;
+		}
+		bool Exist$association.PluralName$Where$role.SingularName$
+		{
+			get;
+		}
+$else$
+		$association.Type.FullNameForCTS$ $association.SingularName$Where$role.SingularName$
+		{ 
+			get;
+		} 
+		bool Exist$association.SingularName$Where$role.SingularName$
+		{
+			get;
+		}
+$endif$
+>>
+
+typeClassRole(relation,association,role) ::= <<
+$\n$
+$if(role.Type.IsUnit)$
+		
+$if(type.DocumentationLines)$ 
+		/// <summary> 
+		$role.RelationWhereRole.DocumentationLines:documentationLine(it)$		/// </summary> 
+$endif$ 
+		virtual public $role.Type.FullNameForCTS$ $role.HierarchySingularName$ 
+		{
+			get
+			{
+				return ($role.Type.FullNameForCTS$) allors.GetUnitRole(AllorsDomains.$domain.name$Domain.$relation.Name$);
+			}
+			set
+			{
+				allors.SetUnitRole(AllorsDomains.$domain.name$Domain.$relation.Name$,value);
+			}
+		}
+		virtual public bool Exist$role.HierarchySingularName${
+			get
+			{
+				return allors.ExistUnitRole(AllorsDomains.$domain.name$Domain.$relation.Name$);
+			}
+		}
+		virtual public void Remove$role.HierarchySingularName$()
+		{
+			allors.RemoveUnitRole(AllorsDomains.$domain.name$Domain.$relation.Name$);
+		}
+$else$
+$if(role.IsMany)$
+$if(type.DocumentationLines)$ 
+		/// <summary> 
+		$role.RelationWhereRole.DocumentationLines:documentationLine(it)$		/// </summary> 
+$endif$ 
+		virtual public AllorsExtent<$role.Type.FullNameForCTS$> $role.HierarchyPluralName$
+		{ 
+			get
+			{
+				return allors.GetCompositeRoles(AllorsDomains.$domain.name$Domain.$relation.Name$);
+			}
+			set
+			{
+				allors.SetCompositeRoles(AllorsDomains.$domain.name$Domain.$relation.Name$,value);
+			}
+		}
+		virtual public void Add$role.HierarchySingularName$ ($role.Type.FullNameForCTS$ value)
+		{
+			allors.AddCompositeRole(AllorsDomains.$domain.name$Domain.$relation.Name$,value);
+		}
+		virtual public void Remove$role.HierarchySingularName$ ($role.Type.FullNameForCTS$ value)
+		{
+			allors.RemoveCompositeRole(AllorsDomains.$domain.name$Domain.$relation.Name$,value);
+		}
+		virtual public bool Exist$role.HierarchyPluralName$
+		{
+			get
+			{
+				return allors.ExistCompositeRoles(AllorsDomains.$domain.name$Domain.$relation.Name$);
+			}
+		}
+		virtual public void Remove$role.HierarchyPluralName$()
+		{
+			allors.RemoveCompositeRoles(AllorsDomains.$domain.name$Domain.$relation.Name$);
+		}
+$else$
+$if(type.DocumentationLines)$ 
+		/// <summary> 
+		$role.RelationWhereRole.DocumentationLines:documentationLine(it)$		/// </summary> 
+$endif$ 
+		virtual public $role.Type.FullNameForCTS$ $role.HierarchySingularName$
+		{ 
+			get
+			{
+				return ($role.Type.FullNameForCTS$) allors.GetCompositeRole(AllorsDomains.$domain.name$Domain.$relation.Name$);
+			}
+			set
+			{
+				allors.SetCompositeRole(AllorsDomains.$domain.name$Domain.$relation.Name$,value);
+			}
+		}
+		virtual public bool Exist$role.HierarchySingularName$
+		{
+			get
+			{
+				return allors.ExistCompositeRole(AllorsDomains.$domain.name$Domain.$relation.Name$);
+			}
+		}
+		virtual public void Remove$role.HierarchySingularName$()
+		{
+			allors.RemoveCompositeRole(AllorsDomains.$domain.name$Domain.$relation.Name$);
+		}
+$endif$
+$endif$
+>>
+
+typeClassAssociation(relation,association,role) ::= <<
+$\n$
+$if(association.IsMany)$
+$if(type.DocumentationLines)$ 
+		/// <summary> 
+		$association.RelationWhereAssociation.DocumentationLines:documentationLine(it)$		/// </summary> 
+$endif$ 
+		virtual public AllorsExtent<$association.Type.FullNameForCTS$> $association.PluralName$Where$role.SingularName$
+		{ 
+			get
+			{
+				return allors.GetCompositeAssociations(AllorsDomains.$domain.name$Domain.$relation.Name$);
+			}
+		}
+		virtual public bool Exist$association.PluralName$Where$role.SingularName$
+		{
+			get
+			{
+				return allors.ExistCompositeAssociations(AllorsDomains.$domain.name$Domain.$relation.Name$);
+			}
+		}
+$else$
+$if(type.DocumentationLines)$ 
+		/// <summary> 
+		$association.RelationWhereAssociation.DocumentationLines:documentationLine(it)$		/// </summary> 
+$endif$ 
+		virtual public $association.Type.FullNameForCTS$ $association.SingularName$Where$role.SingularName$
+		{ 
+			get
+			{
+				return ($association.Type.FullNameForCTS$) allors.GetCompositeAssociation(AllorsDomains.$domain.name$Domain.$relation.Name$);
+			}
+		} 
+		virtual public bool Exist$association.SingularName$Where$role.SingularName$
+		{
+			get
+			{
+				return allors.ExistCompositeAssociation(AllorsDomains.$domain.name$Domain.$relation.Name$);
+			}
+		}
+$endif$
+>>
+
+boolean(value) ::= "$if(value)$true$else$false$endif$"
+
+documentationLine(line) ::= "/// $line$$\n$"

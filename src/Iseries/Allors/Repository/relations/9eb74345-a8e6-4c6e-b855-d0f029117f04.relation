@@ -1,0 +1,10 @@
+<relation allors="1.0" id="9eb74345-a8e6-4c6e-b855-d0f029117f04">
+  <isIndexed>true</isIndexed>
+  <association>
+    <type idref="6cf3f3e8-6a11-47b6-8d41-c8454fa42308" />
+    <isMany>true</isMany>
+  </association>
+  <role>
+    <type idref="6d0ecca5-f47c-4ba3-a515-e4533697ae68" />
+  </role>
+</relation>

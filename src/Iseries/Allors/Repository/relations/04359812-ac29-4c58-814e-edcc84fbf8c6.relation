@@ -1,0 +1,11 @@
+<relation allors="1.0" id="04359812-ac29-4c58-814e-edcc84fbf8c6">
+  <association>
+    <type idref="637001bf-27d1-4456-9ab7-086c54b0d530" />
+  </association>
+  <role>
+    <type idref="ad7f5ddc-bedb-4aaa-97ac-d6693a009ba9" />
+    <singularName>Direction</singularName>
+    <pluralName>Directions</pluralName>
+    <size>256</size>
+  </role>
+</relation>

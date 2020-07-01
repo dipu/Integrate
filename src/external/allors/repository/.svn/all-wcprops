@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/lbk/!svn/ver/2/trunk/external/allors/repository
+END
+Allors.Repository.Application.pdb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/lbk/!svn/ver/2/trunk/external/allors/repository/Allors.Repository.Application.pdb
+END
+Allors.Framework.dll
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/lbk/!svn/ver/2/trunk/external/allors/repository/Allors.Framework.dll
+END
+Allors.Repository.dll
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/lbk/!svn/ver/2/trunk/external/allors/repository/Allors.Repository.dll
+END
+Allors.Repository.Winforms.dll
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/lbk/!svn/ver/2/trunk/external/allors/repository/Allors.Repository.Winforms.dll
+END
+desktop.ini
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/lbk/!svn/ver/2/trunk/external/allors/repository/desktop.ini
+END
+Allors.Repository.Application.exe
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/lbk/!svn/ver/2/trunk/external/allors/repository/Allors.Repository.Application.exe
+END
+StringTemplate.dll
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/lbk/!svn/ver/2/trunk/external/allors/repository/StringTemplate.dll
+END
+antlr.runtime.dll
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/lbk/!svn/ver/2/trunk/external/allors/repository/antlr.runtime.dll
+END

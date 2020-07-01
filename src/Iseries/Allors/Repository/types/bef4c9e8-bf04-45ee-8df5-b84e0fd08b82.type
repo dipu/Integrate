@@ -1,0 +1,5 @@
+<type allors="1.0" id="bef4c9e8-bf04-45ee-8df5-b84e0fd08b82">
+  <singularName>DateParameter</singularName>
+  <pluralName>DateParameters</pluralName>
+  <namespace idref="09d8acde-bc56-4fa3-bf36-2729688843bb" />
+</type>

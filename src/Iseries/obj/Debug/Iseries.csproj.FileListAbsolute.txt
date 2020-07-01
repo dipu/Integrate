@@ -1,0 +1,9 @@
+C:\Repos\GitHub\Allors\Integrate\src\Iseries\bin\Debug\Iseries.dll
+C:\Repos\GitHub\Allors\Integrate\src\Iseries\bin\Debug\Iseries.pdb
+C:\Repos\GitHub\Allors\Integrate\src\Iseries\bin\Debug\Allors.Framework.dll
+C:\Repos\GitHub\Allors\Integrate\src\Iseries\bin\Debug\IBM.Data.DB2.iSeries.dll
+C:\Repos\GitHub\Allors\Integrate\src\Iseries\obj\Debug\Iseries.csprojAssemblyReference.cache
+C:\Repos\GitHub\Allors\Integrate\src\Iseries\obj\Debug\Iseries.csproj.CoreCompileInputs.cache
+C:\Repos\GitHub\Allors\Integrate\src\Iseries\obj\Debug\Iseries.csproj.CopyComplete
+C:\Repos\GitHub\Allors\Integrate\src\Iseries\obj\Debug\Iseries.dll
+C:\Repos\GitHub\Allors\Integrate\src\Iseries\obj\Debug\Iseries.pdb

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/lbk/!svn/ver/2/trunk/external/nunit
+END
+license.txt
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/lbk/!svn/ver/2/trunk/external/nunit/license.txt
+END
+rowtest-license.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/lbk/!svn/ver/2/trunk/external/nunit/rowtest-license.txt
+END

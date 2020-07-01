@@ -1,0 +1,11 @@
+<relation allors="1.0" id="569acf7f-5a5c-4c08-96dd-71b99b2292d2">
+  <association>
+    <type idref="bcaa5b32-31e6-462b-991b-ff676dcdee89" />
+  </association>
+  <role>
+    <type idref="ad7f5ddc-bedb-4aaa-97ac-d6693a009ba9" />
+    <singularName>Name</singularName>
+    <pluralName>Names</pluralName>
+    <size>256</size>
+  </role>
+</relation>

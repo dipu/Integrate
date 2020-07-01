@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F54BEF2B-ECA8-445F-9BB4-A0F97C475FFD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Iseries</RootNamespace>
+    <AssemblyName>Iseries</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Allors.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\external\allors\platform\Allors.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="IBM.Data.DB2.iSeries, Version=10.0.0.0, Culture=neutral, PublicKeyToken=9cdb2ebfb1f93a26">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\external\lib\IBM.Data.DB2.iSeries.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Allors\output\base\Iseries\Cell.cs" />
+    <Compile Include="Allors\output\base\Iseries\Column.cs" />
+    <Compile Include="Allors\output\base\Iseries\DateParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\base\Iseries\DateTimeCell.cs" />
+    <Compile Include="Allors\output\base\Iseries\DateTimeParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\base\Iseries\DecimalCell.cs" />
+    <Compile Include="Allors\output\base\Iseries\DecimalParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\base\Iseries\IntCell.cs" />
+    <Compile Include="Allors\output\base\Iseries\IntParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\base\Iseries\Library.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\base\Iseries\Parameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\base\Iseries\Program.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\base\Iseries\Row.cs" />
+    <Compile Include="Allors\output\base\Iseries\StringCell.cs" />
+    <Compile Include="Allors\output\base\Iseries\StringParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\base\Iseries\Table.cs" />
+    <Compile Include="Allors\output\meta\Iseries.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\meta\IseriesDomainConfiguration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\partial\Iseries\Cell.allors.cs" />
+    <Compile Include="Allors\output\partial\Iseries\Column.allors.cs" />
+    <Compile Include="Allors\output\partial\Iseries\DateParameter.allors.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\partial\Iseries\DateTimeCell.allors.cs" />
+    <Compile Include="Allors\output\partial\Iseries\DateTimeParameter.allors.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\partial\Iseries\DecimalCell.allors.cs" />
+    <Compile Include="Allors\output\partial\Iseries\DecimalParameter.allors.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\partial\Iseries\IntCell.allors.cs" />
+    <Compile Include="Allors\output\partial\Iseries\IntParameter.allors.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\partial\Iseries\Library.allors.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\partial\Iseries\Parameter.allors.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\partial\Iseries\Program.allors.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\partial\Iseries\Row.allors.cs" />
+    <Compile Include="Allors\output\partial\Iseries\StringCell.allors.cs" />
+    <Compile Include="Allors\output\partial\Iseries\StringParameter.allors.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allors\output\partial\Iseries\Table.allors.cs" />
+    <Compile Include="ISeriesCall.cs" />
+    <Compile Include="ISeriesException.cs" />
+    <Compile Include="ISeriesSession.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Column.cs" />
+    <Compile Include="src\Cell.cs" />
+    <Compile Include="src\CellFactory.cs" />
+    <Compile Include="src\DateTimeCell.cs" />
+    <Compile Include="src\Row.cs" />
+    <Compile Include="src\DecimalCell.cs" />
+    <Compile Include="src\StringCell.cs" />
+    <Compile Include="src\IntCell.cs" />
+    <Compile Include="src\DateParameter.cs" />
+    <Compile Include="src\DateTimeParameter.cs" />
+    <Compile Include="src\DecimalParameter.cs" />
+    <Compile Include="src\IntParameter.cs" />
+    <Compile Include="src\Library.cs" />
+    <Compile Include="src\Parameter.cs" />
+    <Compile Include="src\Program.cs" />
+    <Compile Include="src\Session.cs" />
+    <Compile Include="src\StringParameter.cs" />
+    <Compile Include="src\Table.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Library\IBM.Data.DB2.iSeries.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

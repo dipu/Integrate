@@ -1,0 +1,151 @@
+group AllorsCSharpMeta;
+
+TemplateId() ::= <<14F49218-A676-43ba-9CBD-B8FFA059D1BF>>
+TemplateName() ::= <<Allors C# Meta>>
+TemplateVersion() ::= <<1.0.23>>
+TemplateAllors() ::= <<1.0>>
+TemplateConfiguration(domain) ::= <<
+$! 
+Copyright 2002-2008 Allors bvba.
+
+Dual Licensed under
+  a) the Lesser General Public Licence v3 (LGPL)
+  b) the Allors License
+
+The LGPL License is included in the file lgpl.txt.
+The Allors License is an addendum to your contract.
+
+Allors Platform is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+For more information visit http://www.allors.com/legal
+!$
+<generations>
+	<generation template="meta" output="$domain.name$.cs"/> 
+	<generation template="domain" output="$domain.name$DomainConfiguration.cs"/> 
+</generations>
+>>
+
+domain(domain) ::= <<
+using Allors;
+using Allors.Meta;
+using System.Reflection;
+
+namespace AllorsDomains
+{
+	public class $domain.name$DomainConfiguration : AllorsDomainConfiguration
+	{
+		public Assembly DomainAssembly
+        {
+            get { return Assembly.GetExecutingAssembly(); }
+        }
+
+        public Assembly AllorsAssembly
+        {
+            get { return typeof(AllorsDomains.$domain.name$Domain).Assembly; }
+        }
+
+        public MetaDomain MetaDomain
+        {
+            get { return AllorsDomains.$domain.name$Domain.MetaDomain; }
+        }
+	}
+}
+>>
+
+meta(domain) ::= <<
+using Allors.Meta;
+
+namespace AllorsDomains
+{
+	public class $domain.name$Domain
+	{
+		#region Attributes
+		public static readonly MetaDomain MetaDomain;
+$domain.NameSpaces:{namespace|		
+		public static readonly MetaNamespace $namespace.ShortName$;}$
+$domain.Types:{type|		
+		public static readonly MetaType $type.SingularName$;}$
+$domain.Relations:{relation|		
+		public static readonly MetaRelation $relation.Name$;}$
+		#endregion		
+
+		static $domain.name$Domain()
+		{
+			MetaDomain = MetaDomain.Create(new System.Guid("$domain.Id $"));
+			MetaDomain.Name = "$domain.Name$";
+
+			#region Namespaces
+$domain.Namespaces:domainNamespace()$
+			#endregion
+			
+			#region Types
+$domain.Types:domainType()$
+			#endregion
+			
+			#region Inheritances
+			MetaInheritance inheritance;
+$domain.Inheritances:domainInheritance()$
+			#endregion
+
+			#region Relations
+$domain.relations:domainRelation()$
+			#endregion
+		}
+	
+		public $domain.name$Domain(){}
+	}
+}
+>>
+
+domainNamespace(namespace) ::= <<
+			$namespace.ShortName$ = MetaDomain.AddNamespace(new System.Guid("$namespace.Id$"));
+			$namespace.ShortName$.ShortName = "$namespace.ShortName$";
+			$namespace.ShortName$.LongName = "$namespace.LongName$";
+>>
+
+domainType(type) ::= <<
+$if(type.IsUnit)$
+$\n$			$type.SingularName$ = MetaDomain.FindType(new System.Guid("$type.Id$"));
+$else$
+$\n$			$type.SingularName$ = MetaDomain.AddType(new System.Guid("$type.Id $"));
+			$type.SingularName$.SingularName = "$type.SingularName$";
+			$type.SingularName$.PluralName = "$type.PluralName$";
+			$type.SingularName$.Namespace = $type.Namespace.ShortName$;
+$if(!type.IsDefaultIsMultiple)$			$type.SingularName$.IsMultiple = $boolean(type.IsMultiple)$;$endif$
+$if(!type.IsDefaultIsInterface)$			$type.SingularName$.IsInterface = $boolean(type.IsInterface)$;$endif$
+$if(!type.IsDefaultIsUnit)$			$type.SingularName$.IsUnit = $boolean(type.IsUnit)$;$endif$
+$if(!type.IsDefaultIsAbstract)$			$type.SingularName$.IsAbstract = $boolean(type.IsAbstract)$;$endif$
+$endif$
+>>
+
+domainInheritance(inheritance) ::= <<$\n$
+			inheritance = MetaDomain.AddInheritance(new System.Guid("$inheritance.Id$"));
+			inheritance.Subtype = $inheritance.Subtype.SingularName$;
+			inheritance.Supertype = $inheritance.Supertype.SingularName$;
+>>
+
+domainRelation(relation) ::= <<
+$\n$			$relation.Name$ = MetaDomain.AddRelation(new System.Guid("$relation.Id$"));
+$if(!relation.IsDefaultIsIndexed)$			$relation.Name$.IsIndexed = $boolean(relation.IsIndexed)$;$endif$
+			MetaAssociation A_$relation.Name$ = $relation.Name$.Association;
+			A_$relation.Name$.Type = $relation.Association.Type.SingularName$;
+$if(!relation.association.IsDefaultIsMany)$			A_$relation.Name$.IsMany = $boolean(relation.association.IsMany)$;$endif$
+$if(relation.association.ExistAssignedSingularName)$			A_$relation.Name$.AssignedSingularName = "$relation.association.assignedSingularName$";$endif$
+$if(relation.association.ExistAssignedPluralName)$			A_$relation.Name$.AssignedPluralName = "$relation.association.assignedPluralName$";$endif$
+			MetaRole R_$relation.Name$ = $relation.Name$.Role;
+			R_$relation.Name$.Type = $relation.role.Type.SingularName$;
+$if(!relation.role.IsDefaultIsMany)$			R_$relation.Name$.IsMany = $boolean(relation.role.IsMany)$;$endif$
+$if(relation.role.ExistAssignedSingularName)$			R_$relation.Name$.AssignedSingularName = "$relation.role.assignedSingularName$";$endif$
+$if(relation.role.ExistAssignedPluralName)$			R_$relation.Name$.AssignedPluralName = "$relation.role.assignedPluralName$";$endif$
+$if(!relation.role.IsDefaultSize)$			R_$relation.Name$.Size = $relation.role.Size$;$endif$
+$if(!relation.role.IsDefaultPrecision)$			R_$relation.Name$.Precision = $relation.role.Precision$;$endif$
+$if(!relation.role.IsDefaultScale)$			R_$relation.Name$.Scale = $relation.role.scale$;$endif$
+>>
+
+boolean(value) ::= "$if(value)$true$else$false$endif$"
+
+documentationLine(line) ::= "/// $line$$\n$"
+

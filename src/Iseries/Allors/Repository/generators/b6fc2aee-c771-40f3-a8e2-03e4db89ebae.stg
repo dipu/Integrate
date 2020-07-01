@@ -1,0 +1,83 @@
+group AllorsCSharpBase;
+
+TemplateId() ::= <<FA2E53B4-915D-4227-8571-456FC8E04DB0>>
+TemplateName() ::= <<Allors C# Uml>>
+TemplateVersion() ::= <<1.0.5>>
+TemplateAllors() ::= <<1.0>>
+TemplateConfiguration(domain) ::= <<
+$! 
+Copyright 2002-2008 Allors bvba.
+
+Dual Licensed under
+  a) the Lesser General Public Licence v3 (LGPL)
+  b) the Allors License
+
+The LGPL License is included in the file lgpl.txt.
+The Allors License is an addendum to your contract.
+
+Allors Platform is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+For more information visit http://www.allors.com/legal
+!$
+<generations>
+	<generation template="domain" output="$domain.name$.cs"/> 
+</generations>
+>>
+
+domain(domain) ::= <<
+$domain.CompositeTypes:{type|$if(type.IsInterface)$$interface(domain=domain,type=type)$$else$$class(domain=domain,type=type)$$endif$}$
+>>
+
+interface(domain,type) ::= <<
+
+namespace $type.Namespace.LongName$
+{
+$if(type.DocumentationLines)$ 
+	/// <summary> 
+	$type.DocumentationLines:documentationLine(it)$	/// </summary> 
+$endif$ 
+	public interface $type.SingularName$ $if(type.ExistDirectSuperInterfaces)$ : $first(type.DirectSuperInterfaces):{$it.FullNameForCTS$}$$rest(type.DirectSuperInterfaces):{, $it.FullNameForCTS$}$ $endif$
+	{
+$type.AssociationsWhereType:{association|$interfaceRole(relation=association.RelationWhereAssociation,association=association,role=association.RelationWhereAssociation.Role)$}$
+	}
+}
+
+>>
+
+class(domain,type) ::= <<
+
+namespace $type.Namespace.LongName$
+{
+$if(type.DocumentationLines)$ 
+	/// <summary> 
+	$type.DocumentationLines:documentationLine(it)$	/// </summary> 
+$endif$ 
+	public $if(type.IsAbstract)$abstract$endif$ class $type.Name$ $if(type.ExistDirectSuperTypes)$ : $first([type.DirectSuperClass,type.DirectSuperInterfaces]):{$it.FullNameForCTS$}$$rest([type.DirectSuperClass,type.DirectSuperInterfaces]):{, $it.FullNameForCTS$}$ $endif$
+	{
+$type.ExclusiveRoles:{role|$classRole(relation=role.RelationWhereRole,association=role.RelationWhereRole.Association,role=role)$}$
+	}
+}
+>>
+
+interfaceRole(relation,association,role) ::= <<
+$if(role.IsOne)$ 
+	$role.Type.FullNameForCTS$ $role.HierarchySingularName${set;}
+$else$
+	$role.Type.FullNameForCTS$ $role.HierarchyPluralName${set;}
+$endif$
+$\n$
+>>
+
+classRole(relation,association,role) ::= <<
+$if(role.IsOne)$ 
+	public $role.Type.FullNameForCTS$ $role.HierarchySingularName${set{}}
+$else$
+	public $role.Type.FullNameForCTS$ $role.HierarchyPluralName${set{}}
+$endif$
+$\n$
+>>
+
+documentationLine(line) ::= "/// $line$$\n$"

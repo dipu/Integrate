@@ -1,0 +1,1 @@
+@start external\allors\repository\Allors.Repository.Application.exe Iseries\allors\repository\allors.repository

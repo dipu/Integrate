@@ -1,0 +1,11 @@
+<relation allors="1.0" id="154ccfbb-bb38-4df4-a0f8-cc035079d316">
+  <isIndexed>true</isIndexed>
+  <association>
+    <type idref="637001bf-27d1-4456-9ab7-086c54b0d530" />
+  </association>
+  <role>
+    <type idref="637001bf-27d1-4456-9ab7-086c54b0d530" />
+    <singularName>NextParameter</singularName>
+    <pluralName>NextParameters</pluralName>
+  </role>
+</relation>

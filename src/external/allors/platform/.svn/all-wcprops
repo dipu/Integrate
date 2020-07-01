@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/lbk/!svn/ver/2/trunk/external/allors/platform
+END
+Allors.Adapters.Memory.dll
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/lbk/!svn/ver/2/trunk/external/allors/platform/Allors.Adapters.Memory.dll
+END
+Allors.Framework.dll
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/lbk/!svn/ver/2/trunk/external/allors/platform/Allors.Framework.dll
+END
+Allors.Adapters.SqlClient.dll
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/lbk/!svn/ver/2/trunk/external/allors/platform/Allors.Adapters.SqlClient.dll
+END
+Allors.UI.WebForms.dll
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/lbk/!svn/ver/2/trunk/external/allors/platform/Allors.UI.WebForms.dll
+END
+desktop.ini
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/lbk/!svn/ver/2/trunk/external/allors/platform/desktop.ini
+END
